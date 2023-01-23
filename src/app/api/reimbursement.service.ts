@@ -14,4 +14,8 @@ export class ReimbursementService {
   getAllSubmissions() {
     return this.http.get(`${this.baseUrl}/reimbursement-index.php`);
   }
+
+  storeSubmission(data: any) {
+    return this.http.post(`${this.baseUrl}/reimbursement-store.php`, { data });
+  }
 }

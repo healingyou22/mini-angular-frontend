@@ -1,0 +1,48 @@
+<form [formGroup]="reimbursementForm" (ngSubmit)="onSubmit()">
+    <p>
+        <label for="employee_id">Employee ID</label>
+        <input type="text" formControlName="employee_id">
+    </p>
+    <p>
+        <label for="submission_date">Submission Date</label>
+        <input type="date" formControlName="submission_date">
+    </p>
+
+    <table formArrayName="items">
+        <tr>
+            <th>add multiple items : </th>
+            <th>
+                <button type="button" (click)="addItem()">click here!</button>
+            </th>
+        </tr>
+        <tr *ngFor="let item of items().controls; let i = index;" [formGroupName]="i">
+            <td>
+                <p>
+                    <label for="item_name">Item</label>
+                    <input type="text" formControlName="item_name">
+                </p>
+            </td>
+            <td>
+                <p>
+                    <label for="item_date">Date</label>
+                    <input type="date" formControlName="item_date">
+                </p>
+            </td>
+            <td>
+                <p>
+                    <label for="item_nominal">Nominal</label>
+                    <input type="number" formControlName="item_nominal">
+                </p>
+            </td>
+            <td>
+                <p>
+                    <button type="button" (click)="removeItem(i)">remove</button>
+                </p>
+            </td>
+        </tr>
+    </table>
+
+    <p>
+        <button type="submit">Submit</button>
+    </p>
+</form>
