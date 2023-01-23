@@ -1,0 +1,14 @@
+<table>
+    <ng-container *ngFor="let row of rows">
+        <tr>
+            <th>Employee ID</th>
+            <th>Employee Name</th>
+            <th>Submission Date</th>
+        </tr>
+        <tr>
+            <td>{{ row.employee_id }}</td>
+            <td>{{ row.name }}</td>
+            <td>{{ row.submission_date }}</td>
+        </tr>
+    </ng-container>
+</table>
