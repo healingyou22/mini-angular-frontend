@@ -9,6 +9,8 @@ import { ReimbursementService } from 'src/app/api/reimbursement.service';
 })
 export class IndexComponent implements OnInit {
 
+  tData: boolean = false;
+
   rows: any;
   loadingIndicator = true;
   columns = [
@@ -25,6 +27,7 @@ export class IndexComponent implements OnInit {
   }
 
   index() {
+    this.tData = true;
     this.reimbursementService.getAllSubmissions().subscribe(
       (response: any) => {
         // console.log(response.data);
@@ -41,7 +44,17 @@ export class IndexComponent implements OnInit {
   }
 
   delete(value: any) {
-    console.log(value);
+    this.tData = true;
+    this.reimbursementService.deleteSubmission(value).subscribe(
+      (response: any) => {
+        // console.log(response.data);
+        if (response.data === 'success') {
+          this.index();
+        } else {
+          console.log(response.data);
+        }
+      }
+    );
   }
 
 }
