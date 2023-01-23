@@ -14,7 +14,10 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { MatButtonModule } from '@angular/material/button';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     ReactiveFormsModule,
     NgxDatatableModule,
     MatButtonModule,
-    MatSlideToggleModule
+    MatCardModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

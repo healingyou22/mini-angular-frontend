@@ -1,48 +1,65 @@
-<form [formGroup]="reimbursementForm" (ngSubmit)="onSubmit()">
-    <p>
-        <label for="employee_id">Employee ID</label>
-        <input type="text" formControlName="employee_id">
-    </p>
-    <p>
-        <label for="submission_date">Submission Date</label>
-        <input type="date" formControlName="submission_date">
-    </p>
+<mat-card>
+    <form [formGroup]="reimbursementForm" (ngSubmit)="onSubmit()">
+        <mat-card-header>
+            <mat-card-title>Reimbursement Form</mat-card-title>
+            <mat-card-subtitle>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Employee ID</mat-label>
+                    <input matInput formControlName="employee_id">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="submission_date">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
 
-    <table formArrayName="items">
-        <tr>
-            <th>add multiple items : </th>
-            <th>
-                <button type="button" (click)="addItem()">click here!</button>
-            </th>
-        </tr>
-        <tr *ngFor="let item of items().controls; let i = index;" [formGroupName]="i">
-            <td>
-                <p>
-                    <label for="item_name">Item</label>
-                    <input type="text" formControlName="item_name">
-                </p>
-            </td>
-            <td>
-                <p>
-                    <label for="item_date">Date</label>
-                    <input type="date" formControlName="item_date">
-                </p>
-            </td>
-            <td>
-                <p>
-                    <label for="item_nominal">Nominal</label>
-                    <input type="number" formControlName="item_nominal">
-                </p>
-            </td>
-            <td>
-                <p>
-                    <button type="button" (click)="removeItem(i)">remove</button>
-                </p>
-            </td>
-        </tr>
-    </table>
+                <table cellspacing="0" formArrayName="items">
+                    <tr>
+                        <th>add multiple items : </th>
+                        <th>
+                            <button type="button" mat-raised-button color="accent" (click)="addItem()">click
+                                here!</button>
+                        </th>
+                    </tr>
+                    <tr *ngFor="let item of items().controls; let i = index;" [formGroupName]="i">
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Item</mat-label>
+                                <input matInput placeholder="Gasoline" formControlName="item_name">
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Choose a date</mat-label>
+                                <input matInput [matDatepicker]="picker" formControlName="item_date">
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field appearance="fill" floatLabel="always">
+                                <mat-label>Amount</mat-label>
+                                <input matInput type="number" class="example-right-align" placeholder="0"
+                                    formControlName="item_nominal">
+                                <span matTextPrefix>$&nbsp;</span>
+                                <span matTextSuffix>.00</span>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <p>
+                                <button mat-raised-button color="warn" type="button"
+                                    (click)="removeItem(i)">remove</button>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </mat-card-subtitle>
+        </mat-card-header>
 
-    <p>
-        <button type="submit">Submit</button>
-    </p>
-</form>
+        <mat-card-actions>
+            <button type="submit" mat-raised-button color="primary">Submit</button>
+            <a type="button" mat-raised-button color="warn" href="reimbursement">Cancel</a>
+        </mat-card-actions>
+    </form>
+</mat-card>
