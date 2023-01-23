@@ -1,14 +1,23 @@
-<table>
-    <ng-container *ngFor="let row of rows">
-        <tr>
-            <th>Employee ID</th>
-            <th>Employee Name</th>
-            <th>Submission Date</th>
-        </tr>
-        <tr>
-            <td>{{ row.employee_id }}</td>
-            <td>{{ row.name }}</td>
-            <td>{{ row.submission_date }}</td>
-        </tr>
-    </ng-container>
-</table>
+<div>
+    <a mat-raised-button color="primary" href="reimbursement/create">Create Reimbursement</a>
+
+    <br>
+    <br>
+
+    <ngx-datatable class="material" [rows]="rows" [loadingIndicator]="loadingIndicator" [columns]="columns"
+        [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50" rowHeight="auto">
+
+        <ngx-datatable-column *ngFor="let column of columns" name="{{column.name}}"
+            prop="{{column.prop}}"></ngx-datatable-column>
+
+        <ngx-datatable-column name="Actions" prop="unicode">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <section>
+                    <button mat-flat-button color="primary" (click)="edit(value)">Edit</button>
+                    <button mat-flat-button color="warn" (click)="delete(value)">Delete</button>
+                </section>
+            </ng-template>
+        </ngx-datatable-column>
+
+    </ngx-datatable>
+</div>
